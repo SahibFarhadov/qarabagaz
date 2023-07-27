@@ -13,12 +13,16 @@ class Person(models.Model):
 	dogum_yeri=models.CharField(verbose_name="Doğulduğu yer",max_length=255)
 	vefat_yeri=models.CharField(verbose_name="Vəfat yeri", max_length=255)
 	vetendasligi=models.CharField(verbose_name="Vətəndaşlığı",max_length=50)
+	sekil=models.ImageField("Şəkil",upload_to="main/uploads/%d/%m/%Y",null=True,blank=True)
 	
 	# Hərbi məlumatlar --------------
 	qosun_novu=models.CharField(verbose_name="Qoşun növü",max_length=100)
 	mensubiyyeti=models.CharField(verbose_name="Mənsubiyyəti",max_length=100)
 	xidmet_illeri=models.CharField(verbose_name="Xidmət illəri",max_length=100)
 
+	def __str__(self):
+		return self.ad_soyad
+	
 
 class Rutbe(models.Model):
 	pass
