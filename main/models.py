@@ -39,12 +39,21 @@ class Medallar(models.Model):
 		return f"{self.ad}"
 
 
-
 # Person classi Sehidlerin melumatlarini ozunde saxlayir
 class Person(models.Model):
+	kisi="Kişi"
+	qadin="Qadın"
+	secim=[
+		(kisi,"Kişi"),
+		(qadin,"Qadın")
+	]
 	class Meta:
 		verbose_name="Şəhid"
 		verbose_name_plural="Şəhidlər"
+
+	#Universal identifier
+	id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+
 	# Şəxsi məlumatlar --------------
 	ad=models.CharField(verbose_name="Adı",max_length=50,default="")
 	soyad=models.CharField(verbose_name="Soyadı",max_length=50,default="")
@@ -55,14 +64,23 @@ class Person(models.Model):
 	dogum_yeri=models.CharField(verbose_name="Doğulduğu yer",max_length=255)
 	vefat_yeri=models.CharField(verbose_name="Vəfat yeri", max_length=255)
 	vetendasligi=models.CharField(verbose_name="Vətəndaşlığı",max_length=50)
-	sekil=models.ImageField("Şəkil",upload_to="main/uploads/%d/%m/%Y",null=True,blank=True)
-	medallar=models.ManyToManyField(Medallar)
+	cinsiyeti=models.CharField(verbose_name="Cinsiyyəti seçin",max_length=5,default=kisi,choices=secim)
+	sekil=models.ImageField("Şəkil",upload_to="main/uploads/%d/%m/%Y",null=True,blank=True,default="static/img/default-man.jpg")
 	
 	# Hərbi məlumatlar --------------
 	qosun_novu=models.OneToOneField(QosunNovu,on_delete=models.CASCADE,null=True,blank=True,verbose_name="Qoşun növü")
-	mensubiyyeti=models.CharField(verbose_name="Mənsubiyyəti",max_length=100)
+	mensubiyyeti=models.CharField(verbose_name="Mənsubiyyəti",max_length=100, default="Azərbaycan Ordusu")
 	xidmet_illeri=models.CharField(verbose_name="Xidmət illəri",max_length=100)
-	rutbe=models.OneToOneField(Rutbe,on_delete=models.CASCADE,null=True,blank=True,verbose_name="Rütbə")
+	rutbe=models.ManyToManyField(Rutbe,verbose_name="Rütbə")
+	medallar=models.ManyToManyField(Medallar)
+
+	def get_full_name(self):
+		_ = ""
+		if self.cinsiyeti==self.kisi:
+			_ = "oğlu"
+		else:
+			_ = "qızı"
+		return f" Şəhid {self.ad} {self.ata_adi} {_} {self.soyad}"
 
 	def __str__(self):
 		return (self.ad+" "+self.soyad)

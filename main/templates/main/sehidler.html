@@ -1,2 +1,16 @@
 {%extends 'base.html'%}
 {%load static%}
+
+{%block title%} Şəhidlər ölməz vətən bölünməz | Qarabag.az {%endblock%}
+
+{% block content %}
+    <div>
+        {%for person in persons%}
+            <div class="container" style="border:1px solid red;">
+				<a href="{%url 'sehid' person.id %}">
+		                {{person.get_full_name}}
+		        </a>
+			</div>
+        {%endfor%}
+    </div>
+{% endblock  %}

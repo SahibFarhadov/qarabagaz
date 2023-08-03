@@ -2,47 +2,16 @@
 {% block title %} Qarabağ Azərbaycandır! | Qarabağ.az {% endblock %}
 
 {% block content %}
-    
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
-    <h1>Index block content burada olacaq</h1>
+    <div class="mt-2">
+        {%for person in persons%}
+            <div class="card mb-2">
+                <img src="{{person.sekil}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{person.get_full_name}}</h5>
+                    <p class="card-text">Description</p>
+                    <a class="btn btn-primary" href="{%url 'sehid' person.id %}">Ətraflı oxu</a>
+                </div>
+            </div> 
+        {%endfor%}
+    </div>
 {% endblock  %}
