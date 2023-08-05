@@ -2,16 +2,20 @@
 {% block title %} Qarabağ Azərbaycandır! | Qarabağ.az {% endblock %}
 
 {% block content %}
-    <div class="mt-2">
+    <div class="container-fluid mt-2">
+        <div class="row">
         {%for person in persons%}
-            <div class="card mb-2">
-                <img src="{{person.sekil}}" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">{{person.get_full_name}}</h5>
-                    <p class="card-text">Description</p>
-                    <a class="btn btn-primary" href="{%url 'sehid' person.id %}">Ətraflı oxu</a>
-                </div>
-            </div> 
+                    <div class="col-lg-6 col-md-6" style="border:1px solid yellow">
+                        <div class="card mb-2">
+                            <img src="{{person.sekil}}" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">{{person.get_full_name}}</h5>
+                                <p class="card-text">Description</p>
+                                <a class="btn btn-primary" href="{%url 'sehid' person.id %}">Ətraflı oxu</a>
+                            </div>
+                        </div> 
+                    </div>
         {%endfor%}
+        </div>
     </div>
 {% endblock  %}
