@@ -4,15 +4,37 @@
 {%block title%} Şəhidlər ölməz vətən bölünməz | Qarabag.az {%endblock%}
 
 {% block content %}
-    <div>
+    <div class="container my-2">
     	{%if persons%}
-        {%for person in persons%}
-            <div class="container" style="border:1px solid red;">
-				<a href="{%url 'sehid' person.id %}">
-		                {{person.get_full_name}}
-		        </a>
+            <div class="container">
+				<table class="table table-bordered border-primary">
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Fotoşəkil</th>
+                            <th>Rütbəsi</th>
+                            <th>Soyadı, adı, atasının adı</th>
+                            <th>Doğum tarixi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for person in persons%}
+                            <tr>
+                                <td>{{count|add:"1"}}</td>
+                                <td>
+                                    <img src="{{person.sekil}}" class="img" style="width:35%;height: 35%;">
+                                </td>
+                                <td>
+                                    {%for rutbe in person.rutbe.all%}{{rutbe}}{%endfor%}
+                                </td>
+                                <td>{{person.getfullname}}</td>
+                                <td>{{person.dogum_tarixi}}</td>
+                            </tr>
+                        {%endfor%}
+                    </tbody>
+                    <tfoot></tfoot>
+                </table>
 			</div>
-        {%endfor%}
         {%endif%}
     </div>
 {% endblock  %}

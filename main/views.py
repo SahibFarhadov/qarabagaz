@@ -11,7 +11,8 @@ def index(request):
 def sehidler(request):
 	persons=Person.objects.all()
 	context={
-		"persons":persons
+		"persons":persons,
+		"count":0
 	}
 	return render(request,"main/sehidler.html",context)
 

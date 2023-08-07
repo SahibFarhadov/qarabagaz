@@ -72,7 +72,7 @@ class Person(models.Model):
 	mensubiyyeti=models.CharField(verbose_name="Mənsubiyyəti",max_length=100, default="Azərbaycan Ordusu")
 	xidmet_illeri=models.CharField(verbose_name="Xidmət illəri",max_length=100)
 	rutbe=models.ManyToManyField(Rutbe,verbose_name="Rütbə")
-	medallar=models.ManyToManyField(Medallar)
+	medallar=models.ManyToManyField(Medallar,verbose_name="Medallar")
 
 	def get_full_name(self):
 		_ = ""
@@ -80,8 +80,12 @@ class Person(models.Model):
 			_ = "oğlu"
 		else:
 			_ = "qızı"
-		return f" Şəhid {self.ad} {self.ata_adi} {_} {self.soyad}"
+		return f"Şəhid {self.ad} {self.ata_adi} {_} {self.soyad}"
 
 	def __str__(self):
-		return (self.ad+" "+self.soyad)
-	
+		_=""
+		if self.cinsiyeti==self.kisi:
+			_ = "oğlu"
+		else:
+			_ = "qızı"
+		return f"{self.ad} {self.ata_adi} {_} {self.soyad}"
