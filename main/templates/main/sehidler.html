@@ -4,9 +4,9 @@
 {%block title%} Şəhidlər ölməz vətən bölünməz | Qarabag.az {%endblock%}
 
 {% block content %}
-    <div class="container my-2">
+    <div class="container-fluid my-2 p-0">
     	{%if persons%}
-            <div class="container">
+            <div class="container-fluid p-0">
 				<table class="table table-bordered border-primary">
                     <thead>
                         <tr>
@@ -19,9 +19,9 @@
                     </thead>
                     <tbody>
                         {%with counter=0%}
-                        {%for person in persons%}
+                        {%for personIndex,person in persons%}
                             <tr>
-                                <td>1</td>
+                                <td>{{personIndex|add:"1"}}</td>
                                 <td style="width:200px;height:200px">
                                     <img src="{{person.sekil}}" style="display:block; width:100%; height:auto;">
                                 </td>

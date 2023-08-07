@@ -10,8 +10,17 @@ def index(request):
 
 def sehidler(request):
 	persons=Person.objects.all()
+	persons_list=[]
+	_count=0
+	for person in persons:
+		_bosList=[]
+		_bosList.append(_count)
+		_bosList.append(person)
+		persons_list.append(_bosList)
+		_count+=1
+
 	context={
-		"persons":persons,
+		"persons":persons_list,
 		"count":0
 	}
 	return render(request,"main/sehidler.html",context)
