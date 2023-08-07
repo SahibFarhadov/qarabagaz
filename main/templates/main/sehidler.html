@@ -17,7 +17,7 @@
 {% block content %}
     <div class="container-fluid my-2 p-0">
     	{%if persons%}
-            <div class="container-fluid p-0">
+            <div class="container-fluid p-0" style="overflow: scroll;">
 				<table class="mytable">
                     <thead>
                         <tr>
@@ -26,6 +26,7 @@
                             <th>Rütbəsi</th>
                             <th>Soyadı, adı, atasının adı</th>
                             <th>Doğum tarixi</th>
+                            <th>Vəfat tarixi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,15 +34,18 @@
                             <tr>
                                 <td class="number">{{personIndex|add:"1"}}</td>
                                 <td style="width:200px;height:200px" title="{{person.get_full_name|title}}">
-                                    <img src="{{person.sekil}}" style="display:block; width:100%; height:auto;">
+                                    <img src="{{person.sekil}}" style="width:200px;">
                                 </td>
                                 <td title="Rütbə">
                                     {%for rutbe in person.rutbe.all%}{{rutbe}}{%endfor%}
                                 </td>
-                                <td title="{{person.get_full_name|title}}">
-                                    <a href="{%url 'sehid' person.id%}">{{person.get_full_name}}</a>
+                                <td title="{{person.get_full_name}}" style="white-space: nowrap;">
+                                    <a style="display: block;" href="{%url 'sehid' person.id%}">{{person.get_full_name}}</a>
                                 </td>
-                                <td title="Gün.Ay.İl">{{person.dogum_tarixi|date:"d.m.Y"}}</td>
+                                <td title="Gün.Ay.İl">{{person.dogum_tarixi|date:"d.m.Y"}}</td>                
+                                <td title="{{person.vefat_tarixi}}">
+                                    {{person.vefat_tarixi|date:"d.m.Y"}}
+                                </td>
                             </tr>
                         {%endfor%}
                             <tr>

@@ -3,8 +3,7 @@
         <img title="" src="{{person.sekil.url}}" class="card-img-top" style="width:35%;height: 35%;">
         <div class="card-body">
             <h5 class="card-title">Şəhid {{person.get_full_name}}</h5>
-            <p class="card-text">Description</p>
-            <a class="btn btn-primary" href="{%url 'sehid' person.id %}">Ətraflı məlumat...</a>
+            <a class="btn btn-primary" href="{%url 'sehid' person.id %}" title="Ətraflı məlumat">Ətraflı məlumat...</a>
         </div>
     </div> 
 </div>
