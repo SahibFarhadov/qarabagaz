@@ -80,7 +80,7 @@ class Person(models.Model):
 			_ = "oğlu"
 		else:
 			_ = "qızı"
-		return f"Şəhid {self.ad} {self.ata_adi} {_} {self.soyad}"
+		return f"{self.ad} {self.ata_adi} {_} {self.soyad}"
 
 	def __str__(self):
 		_=""

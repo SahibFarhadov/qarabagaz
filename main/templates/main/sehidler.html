@@ -18,23 +18,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {%with counter=0%}
                         {%for person in persons%}
                             <tr>
-                                <td>{{count|add:"1"}}</td>
-                                <td>
-                                    <img src="{{person.sekil}}" class="img" style="width:35%;height: 35%;">
+                                <td>1</td>
+                                <td style="width:200px;height:200px">
+                                    <img src="{{person.sekil}}" style="display:block; width:100%; height:auto;">
                                 </td>
                                 <td>
                                     {%for rutbe in person.rutbe.all%}{{rutbe}}{%endfor%}
                                 </td>
-                                <td>{{person.getfullname}}</td>
+                                <td>{{person.get_full_name|title}}</td>
                                 <td>{{person.dogum_tarixi}}</td>
                             </tr>
                         {%endfor%}
+                        {%endwith%}
                     </tbody>
                     <tfoot></tfoot>
                 </table>
 			</div>
         {%endif%}
     </div>
+    <script src="{%static '/main/js/sehidler.js'%}"></script>
 {% endblock  %}
