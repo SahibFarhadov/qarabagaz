@@ -2,5 +2,9 @@
 {%block title%} Şəhid {{person.get_full_name}} | QARABAĞ AZƏRBAYCANDIR{%endblock%}
 
 {%block content%}
-	
+	{%if person%}
+		<div>
+			{%include 'main/partials/_sehid.html'%}
+		</div>
+	{%endif%}
 {%endblock%}

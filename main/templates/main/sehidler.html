@@ -5,6 +5,7 @@
 
 {% block content %}
     <div>
+    	{%if persons%}
         {%for person in persons%}
             <div class="container" style="border:1px solid red;">
 				<a href="{%url 'sehid' person.id %}">
@@ -12,5 +13,6 @@
 		        </a>
 			</div>
         {%endfor%}
+        {%endif%}
     </div>
 {% endblock  %}
