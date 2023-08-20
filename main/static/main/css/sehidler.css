@@ -1,0 +1,17 @@
+table,thead,tbody,td,th,tr{
+	border: 1px solid blue;
+}
+table.mytable{
+	margin-left: 20px;
+	margin-top: 10px;
+}
+td,th{
+	padding: 5px;
+	text-align: center;
+}
+th{
+	text-align: center;
+}
+td.number{
+	font-weight: bolder;
+}

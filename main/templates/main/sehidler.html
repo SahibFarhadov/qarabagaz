@@ -3,11 +3,14 @@
 
 {%block title%} Şəhidlər ölməz vətən bölünməz | Qarabag.az {%endblock%}
 
+{%block css_files%}
+<link rel="stylesheet" type="text/css" href="{%static 'main/css/sehidler.css'%}">
+{%endblock%}
 {% block content %}
     <div class="container-fluid my-2 p-0">
     	{%if persons%}
             <div class="container-fluid p-0">
-				<table class="table table-bordered border-primary">
+				<table class="mytable">
                     <thead>
                         <tr>
                             <th>№</th>
@@ -21,15 +24,15 @@
                         {%with counter=0%}
                         {%for personIndex,person in persons%}
                             <tr>
-                                <td>{{personIndex|add:"1"}}</td>
-                                <td style="width:200px;height:200px">
+                                <td class="number">{{personIndex|add:"1"}}</td>
+                                <td style="width:200px;height:200px" title="{{person.get_full_name|title}}">
                                     <img src="{{person.sekil}}" style="display:block; width:100%; height:auto;">
                                 </td>
-                                <td>
+                                <td title="Rütbə">
                                     {%for rutbe in person.rutbe.all%}{{rutbe}}{%endfor%}
                                 </td>
-                                <td>{{person.get_full_name|title}}</td>
-                                <td>{{person.dogum_tarixi}}</td>
+                                <td title="{{person.get_full_name|title}}">{{person.get_full_name}}</td>
+                                <td title="Gün.Ay.İl">{{person.dogum_tarixi|date:"d.m.Y"}}</td>
                             </tr>
                         {%endfor%}
                         {%endwith%}

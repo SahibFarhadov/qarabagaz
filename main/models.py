@@ -89,3 +89,9 @@ class Person(models.Model):
 		else:
 			_ = "qızı"
 		return f"{self.ad} {self.ata_adi} {_} {self.soyad}"
+
+	def save(self,*args,**kwargs):
+		self.ad=self.ad.capitalize()
+		self.soyad=self.soyad.capitalize()
+		self.ata_adi=self.ata_adi.capitalize()
+		super().save(*args,**kwargs)
