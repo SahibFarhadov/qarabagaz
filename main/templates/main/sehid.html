@@ -1,10 +1,23 @@
 {%extends 'base.html'%}
+{%load static%}
 {%block title%} Şəhid {{person.get_full_name}} | QARABAĞ AZƏRBAYCANDIR{%endblock%}
+
+{%block css_files%}
+<link rel="stylesheet" type="text/css" href="{%static 'main/css/sehid.css'%}">
+{%endblock%}
 
 {%block content%}
 	{%if person%}
-		<div>
-			{%include 'main/partials/_sehid.html'%}
+		<div class="container-fluid mt-3">
+			<div class="row">
+				<div class="col-lg-3">
+					<img title="{{person.get_full_name}}" src="{{person.sekil.url}}" class="img-thumbnail">
+				</div>
+				<div class="col-lg-9">
+					<h5 style="text-align: center;" class="mb-2">Şəhid {{person.get_full_name}} haqqında ətraflı məlumat</h5>
+					<div>{{person.haqqinda|safe}}</div>
+				</div>
+			</div>
 		</div>
 	{%endif%}
 {%endblock%}

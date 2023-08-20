@@ -2,7 +2,7 @@ table,thead,tbody,td,th,tr{
 	border: 1px solid blue;
 }
 table.mytable{
-	margin-left: 20px;
+	margin-left: 10px;
 	margin-top: 10px;
 }
 td,th{

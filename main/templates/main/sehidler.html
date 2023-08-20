@@ -1,11 +1,19 @@
 {%extends 'base.html'%}
 {%load static%}
 
-{%block title%} Şəhidlər ölməz vətən bölünməz | Qarabag.az {%endblock%}
+{%block title%} Şəhidlər ölməz vətən bölünməz | Qarabag.az | Şəhidlər {%endblock%}
 
+<!-- css files container -->
 {%block css_files%}
 <link rel="stylesheet" type="text/css" href="{%static 'main/css/sehidler.css'%}">
+<link rel="stylesheet" type="text/css" href="{%static 'main/css/back_to_top.css'%}">
 {%endblock%}
+
+<!-- Js files container -->
+{%block js_files%}
+<script type="text/javascript" src="{%static 'main/js/back_to_top.js'%}"></script>
+{%endblock%}
+
 {% block content %}
     <div class="container-fluid my-2 p-0">
     	{%if persons%}
@@ -21,7 +29,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {%with counter=0%}
                         {%for personIndex,person in persons%}
                             <tr>
                                 <td class="number">{{personIndex|add:"1"}}</td>
@@ -31,16 +38,23 @@
                                 <td title="Rütbə">
                                     {%for rutbe in person.rutbe.all%}{{rutbe}}{%endfor%}
                                 </td>
-                                <td title="{{person.get_full_name|title}}">{{person.get_full_name}}</td>
+                                <td title="{{person.get_full_name|title}}">
+                                    <a href="{%url 'sehid' person.id%}">{{person.get_full_name}}</a>
+                                </td>
                                 <td title="Gün.Ay.İl">{{person.dogum_tarixi|date:"d.m.Y"}}</td>
                             </tr>
                         {%endfor%}
-                        {%endwith%}
+                            <tr>
+                                <td colspan="5" style="text-align:left">
+                                    Toplam: {{persons|length}}
+                                </td>
+                            </tr>
                     </tbody>
                     <tfoot></tfoot>
                 </table>
 			</div>
         {%endif%}
     </div>
+    {%include 'main/partials/_back_to_top.html'%}
     <script src="{%static '/main/js/sehidler.js'%}"></script>
 {% endblock  %}

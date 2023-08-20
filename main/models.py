@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 import uuid
+from ckeditor.fields import RichTextField
 
 # Sonralar istifade edilmesi ucun CustomUser yazildi
 class MyUser(AbstractUser):
@@ -66,7 +67,8 @@ class Person(models.Model):
 	vetendasligi=models.CharField(verbose_name="Vətəndaşlığı",max_length=50)
 	cinsiyeti=models.CharField(verbose_name="Cinsiyyəti seçin",max_length=5,default=kisi,choices=secim)
 	sekil=models.ImageField("Şəkil",upload_to="main/uploads/%d/%m/%Y",null=True,blank=True,default="static/img/default-man.jpg")
-	
+	haqqinda=RichTextField()
+
 	# Hərbi məlumatlar --------------
 	qosun_novu=models.OneToOneField(QosunNovu,on_delete=models.CASCADE,null=True,blank=True,verbose_name="Qoşun növü")
 	mensubiyyeti=models.CharField(verbose_name="Mənsubiyyəti",max_length=100, default="Azərbaycan Ordusu")
