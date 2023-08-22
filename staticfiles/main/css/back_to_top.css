@@ -1,0 +1,13 @@
+svg.fixed{
+	color: blue;
+	display: none;
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	width: 50px;
+	height: 50px;
+	z-index: 99;
+}
+svg.fixed:hover{
+	cursor: pointer;
+}
